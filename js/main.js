@@ -1,10 +1,18 @@
 alert("Bienvenido a VIBRAS Sex-Shop");
 
+let productList = {
+  vibrador: 2000,
+  satisfyer: 3000,
+  lubricante: 600,
+}
+
+let item, cant
+
 function inicioCompra(){
 
   item = prompt("Escoge el juguete que deseas llevar para jugar: \n vibrador \n satisfyer \n lubricante");
 
-  while (item !== "vibrador" && item !== "satisfyer" && item !== "lubricante"){
+  while (!productList[`${item}`]){
     alert("Opción inválida, tienes que escoger uno del cartel");
     item = prompt("Escoge el juguete que deseas llevar para jugar: \n vibrador \n satisfyer \n lubricante");
   }
@@ -15,14 +23,8 @@ function inicioCompra(){
     alert("Opción inválida, debes ingresar un número.");
     cant = parseInt(prompt("Ingrese la cantidad de juguetes que desea comprar: "));
   }
-
-  if (item === "vibrador") {
-    alert("Agregaste: " + cant +  " vibrador(es) a tu compra.");
-  } else if (item === "satisfyer") {
-    alert("Agregaste: " + cant +  " satisfyer(s) a tu compra.");
-  } else if (item === "lubricante") {
-    alert("Agregaste: " + cant +  " lubricante(s) a tu compra.");
-  }
+4
+    alert(`Agregaste:  ${cant}  ${item}(es)  a tu compra.`);
 }
 
 let cliente;
@@ -36,17 +38,8 @@ function nombreCliente(){
 } 
 
 function total(){
-  let vibrador = 2000;
-  let satisfyer = 3000;
-  let lubricante = 600;
-
-  if (item === "vibrador"){
-    alert(cliente + " jugaras con " + cant + " vibrador(es) por un costo total de $" + (vibrador * cant) + " pesos.");
-  } else if (item === "satisfyer"){
-    alert(cliente + " jugaras con " + cant + " satisfyer(s) por un costo total de $" + (satisfyer * cant) + " pesos.");
-  } else if (item === "lubricante"){
-    alert(cliente + " jugaras con " + cant + " lubricante(s) por un costo total de $" + (lubricante * cant) + " pesos.");
-  }
+  
+  alert(`${cliente} jugaras con ${cant} ${item}(es) por un costo total de $ ${(productList[`${item}`] * cant)} pesos.`);
 }
 
 inicioCompra();
