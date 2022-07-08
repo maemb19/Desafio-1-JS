@@ -1,4 +1,4 @@
-alert("Bienvenido a VIBRAS Sex-Shop");
+//alert("Bienvenido a VIBRAS Sex-Shop");
 
 let productList = {
   vibrador: 2000,
@@ -23,8 +23,10 @@ function inicioCompra(){
     alert("Opción inválida, debes ingresar un número.");
     cant = parseInt(prompt("Ingrese la cantidad de juguetes que desea comprar: "));
   }
-4
-    alert(`Agregaste:  ${cant}  ${item}(es)  a tu compra.`);
+
+  alert(`Agregaste:  ${cant}  ${item}(es)  a tu compra.`);
+  nombreCliente();
+  total();
 }
 
 let cliente;
@@ -38,11 +40,21 @@ function nombreCliente(){
 } 
 
 function total(){
-  
-  alert(`${cliente} jugaras con ${cant} ${item}(es) por un costo total de $ ${(productList[`${item}`] * cant)} pesos.`);
+  let ul = document.getElementById("lista");
+
+  let li1 = document.createElement("li");
+  let li1Texto = document.createTextNode(`${cliente} jugaras con ${cant} ${item}(es) por un costo total de $ ${(productList[`${item}`] * cant)} pesos.`);
+  li1.appendChild(li1Texto);
+
+  ul.appendChild(li1);
 }
 
-inicioCompra();
-nombreCliente();
-total();
-alert("Gracias por Vibrar con nosotros, disfruta el placer de jugar!")
+let button = document.getElementById('add-product');
+
+button.addEventListener('click', inicioCompra);
+
+let finishButton = document.getElementById('finish');
+
+finishButton.addEventListener('click', function(){
+  alert("Gracias por Vibrar con nosotros, disfruta el placer de jugar!")
+});
