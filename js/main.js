@@ -43,11 +43,47 @@ function total(){
   let ul = document.getElementById("lista");
 
   let li1 = document.createElement("li");
+  
+  li1.classList.add('item-list');
+
   let li1Texto = document.createTextNode(`${cliente} jugaras con ${cant} ${item}(es) por un costo total de $ ${(productList[`${item}`] * cant)} pesos.`);
   li1.appendChild(li1Texto);
 
   ul.appendChild(li1);
+
+  let product = document.getElementsByClassName("item-list");
+
+  
+  let itemText = Array.from(product).map(function(element){
+    return element.textContent
+  });
+  console.log(itemText)
+
+  itemText = JSON.stringify(itemText);
+
+  localStorage.setItem('showMe', itemText);
 }
+
+function findSavedProducts() {
+  let itemText = localStorage.getItem('showMe');
+  if (!itemText) return;
+  itemText = JSON.parse(itemText);
+  let ul = document.getElementById("lista");
+  
+  itemText.forEach(function(element){
+
+    let li1 = document.createElement("li");
+  
+    li1.classList.add('item-list');
+
+    let li1Texto = document.createTextNode(element);
+    li1.appendChild(li1Texto);
+
+    ul.appendChild(li1);
+  });
+}
+
+findSavedProducts()
 
 let button = document.getElementById('add-product');
 
